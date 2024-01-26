@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -45,10 +46,20 @@ public class CredentialsSecurityConfiguration extends WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
-                authorizationManagerRequestMatcherRegistry
-                        .requestMatchers("/").permitAll()
+        return http
+                .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin/**").hasRole("ROLE_MANAGER")
-        ).build();
+                        .requestMatchers("/").hasAnyRole("ROLE_MANAGER", "ROLE_USER")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/").permitAll()
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/?error=true")
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/")
+                )
+                .build();
     }
 }
