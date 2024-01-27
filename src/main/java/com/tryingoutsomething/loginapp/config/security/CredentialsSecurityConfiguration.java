@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
@@ -15,7 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 
 @Configuration
-public class CredentialsSecurityConfiguration extends WebSecurityConfiguration {
+@EnableWebSecurity
+public class CredentialsSecurityConfiguration {
 
     @Bean(name = "pwdEncoder")
     public PasswordEncoder getPasswordEncoder() {
@@ -37,7 +38,7 @@ public class CredentialsSecurityConfiguration extends WebSecurityConfiguration {
     }
 
     @Bean
-    public DefaultWebSecurityExpressionHandler webSecurityExpressionHandler() {
+    public DefaultWebSecurityExpressionHandler customWebSecurityExpressionHandler() {
         DefaultWebSecurityExpressionHandler expressionHandler = new DefaultWebSecurityExpressionHandler();
         expressionHandler.setRoleHierarchy(roleHierarchy());
 
@@ -48,18 +49,16 @@ public class CredentialsSecurityConfiguration extends WebSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/admin/**").hasRole("ROLE_MANAGER")
-                        .requestMatchers("/").hasAnyRole("ROLE_MANAGER", "ROLE_USER")
+                        .requestMatchers("/admin").hasRole("MANAGER")
+                        .requestMatchers("/").hasAnyRole("MANAGER", "USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/").permitAll()
+                        .loginPage("/login").permitAll()
                         .defaultSuccessUrl("/", true)
-                        .failureUrl("/?error=true")
+                        .failureUrl("/login?error=true")
                 )
-                .logout(logout -> logout
-                        .logoutUrl("/")
-                )
+                .logout(LogoutConfigurer::permitAll)
                 .build();
     }
 }

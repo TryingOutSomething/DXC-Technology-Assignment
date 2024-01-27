@@ -2,6 +2,7 @@ package com.tryingoutsomething.loginapp.model;
 
 import jakarta.persistence.*;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
@@ -12,6 +13,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+    private String name;
     private String password;
     private boolean enabled;
     private boolean accountExpired;
@@ -25,9 +27,10 @@ public class User {
     )
     private Collection<Role> roles;
 
-    public User(Long id, String username, String password, boolean enabled, boolean accountExpired, boolean credentialsExpired, boolean locked, Collection<Role> roles) {
+    public User(Long id, String username, String name, String password, boolean enabled, boolean accountExpired, boolean credentialsExpired, boolean locked, Collection<Role> roles) {
         this.id = id;
         this.username = username;
+        this.name = name;
         this.password = password;
         this.enabled = enabled;
         this.accountExpired = accountExpired;
@@ -44,20 +47,28 @@ public class User {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getUsername() {
-        return username;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isEnabled() {
@@ -102,6 +113,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id= " + id + "username= " + username +"password= " + password + "]";
+        return "User [id= " + id + ", username= " + username + ", password= " + password + ", name= " + name +
+                ", roles= " + Arrays.toString(roles.toArray()) + "]";
     }
 }
