@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome |${name}|</title>
+    <title>Welcome</title>
 </head>
 <body>
-<!--<p>Good Day |${name}| Lovely weather today!</p>-->
-<!--<p>Username: |${username}|</p>-->
-<!--<p>roles: |${roles}|</p>-->
-<h1>Good day sire</h1>
+<div id="secretPageContainer" sec:authorize="hasRole('ROLE_MANAGER')">
+    <a th:href="@{/admin}">Access Manager Page</a>
+</div>
 
+<div id="usernameContainer">
+    <label for="username">Username:</label>
+    <span id="username" th:text="${#authentication.principal.username}"/>
+</div>
+
+<div id="nameContainer">
+    <label for="name">Name:</label>
+    <span id="name" th:text="${#authentication.principal.name}"/>
+</div>
+
+<div id="authorityContainer">
+    <label for="authorities">Roles: </label>
+    <div id="authorities" th:each="authority : ${#authentication.principal.authorities}">
+        <div th:text="${authority}"/>
+    </div>
+</div>
+
+<div id="logoutContainer" sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}">Logout</a>
+</div>
 </body>
 </html>

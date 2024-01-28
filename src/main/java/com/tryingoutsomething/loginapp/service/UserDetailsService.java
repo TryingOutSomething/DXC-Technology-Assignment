@@ -1,5 +1,6 @@
 package com.tryingoutsomething.loginapp.service;
 
+import com.tryingoutsomething.loginapp.model.AuthenticatedUser;
 import com.tryingoutsomething.loginapp.model.Role;
 import com.tryingoutsomething.loginapp.model.User;
 import com.tryingoutsomething.loginapp.repositories.UserRepository;
@@ -29,14 +30,15 @@ public class UserDetailsService implements org.springframework.security.core.use
             throw new UsernameNotFoundException(username);
         }
 
-        return new org.springframework.security.core.userdetails.User(
+        return new AuthenticatedUser(
                 user.getUsername(),
                 user.getPassword(),
                 user.isEnabled(),
                 user.isAccountNonExpired(),
                 user.isCredentialsNonExpired(),
                 user.isAccountNonLocked(),
-                getUserAuthorities(user.getRoles())
+                getUserAuthorities(user.getRoles()),
+                user.getName()
         );
     }
 
