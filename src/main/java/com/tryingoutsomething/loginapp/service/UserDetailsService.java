@@ -3,6 +3,7 @@ package com.tryingoutsomething.loginapp.service;
 import com.tryingoutsomething.loginapp.model.Role;
 import com.tryingoutsomething.loginapp.model.User;
 import com.tryingoutsomething.loginapp.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,8 +21,9 @@ public class UserDetailsService implements org.springframework.security.core.use
     private UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.searchUserByUsername(username);
+        User user = userRepository.findByUsername(username);
 
         if (user == null) {
             throw new UsernameNotFoundException(username);
@@ -42,7 +44,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
         }
 
         return authorities;

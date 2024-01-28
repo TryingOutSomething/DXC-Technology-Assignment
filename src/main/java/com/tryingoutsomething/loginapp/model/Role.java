@@ -16,6 +16,9 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
+    public Role() {
+    }
+
     public Role(Long id, String name, Collection<User> users) {
         this.id = id;
         this.name = name;
@@ -44,5 +47,10 @@ public class Role {
 
     public void setUsers(Collection<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Role [id = " + id + ", role= " + name + "]";
     }
 }

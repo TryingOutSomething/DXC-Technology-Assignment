@@ -34,6 +34,9 @@ public class User {
     )
     private Collection<Role> roles;
 
+    public User() {
+    }
+
     public User(Long id, String username, String name, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<Role> roles) {
         this.id = id;
         this.username = username;
