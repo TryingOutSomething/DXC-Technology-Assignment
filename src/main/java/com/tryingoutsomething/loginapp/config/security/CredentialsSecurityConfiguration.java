@@ -52,7 +52,7 @@ public class CredentialsSecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin").hasRole("MANAGER")
                         .requestMatchers("/").hasAnyRole("MANAGER", "USER")
-                        .requestMatchers("/js.**", "/css/**", "/img/**").permitAll()
+                        .requestMatchers("/webjars/**", "/js/**", "/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
