@@ -12,13 +12,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(unique = true, nullable = false)
     private String username;
     private String name;
+    @Column(nullable = false)
     private String password;
-    private boolean enabled;
-    private boolean accountExpired;
-    private boolean credentialsExpired;
-    private boolean locked;
+    @Column(columnDefinition = "boolean default true")
+    private boolean enabled = true;
+    @Column(columnDefinition = "boolean default true")
+    private boolean accountNonExpired = true;
+    @Column(columnDefinition = "boolean default true")
+    private boolean credentialsNonExpired = true;
+    @Column(columnDefinition = "boolean default true")
+    private boolean accountNonLocked = true;
     @ManyToMany
     @JoinTable(
             name = "user_roles",
@@ -27,15 +34,15 @@ public class User {
     )
     private Collection<Role> roles;
 
-    public User(Long id, String username, String name, String password, boolean enabled, boolean accountExpired, boolean credentialsExpired, boolean locked, Collection<Role> roles) {
+    public User(Long id, String username, String name, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<Role> roles) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.password = password;
         this.enabled = enabled;
-        this.accountExpired = accountExpired;
-        this.credentialsExpired = credentialsExpired;
-        this.locked = locked;
+        this.accountNonExpired = accountNonExpired;
+        this.credentialsNonExpired = credentialsNonExpired;
+        this.accountNonLocked = accountNonLocked;
         this.roles = roles;
     }
 
@@ -79,28 +86,28 @@ public class User {
         this.enabled = enabled;
     }
 
-    public boolean isAccountExpired() {
-        return accountExpired;
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
     }
 
-    public void setAccountExpired(boolean accountExpired) {
-        this.accountExpired = accountExpired;
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
     }
 
-    public boolean isCredentialsExpired() {
-        return credentialsExpired;
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
     }
 
-    public void setCredentialsExpired(boolean credentialsExpired) {
-        this.credentialsExpired = credentialsExpired;
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
-    public boolean isLocked() {
-        return locked;
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
     }
 
-    public void setLocked(boolean locked) {
-        this.locked = locked;
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
     }
 
     public Collection<Role> getRoles() {

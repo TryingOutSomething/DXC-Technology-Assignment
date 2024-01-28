@@ -22,26 +22,20 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.searchUserByUsername(username);
-        org.springframework.security.core.userdetails.UserDetails userDetails;
 
         if (user == null) {
-            userDetails = new org.springframework.security.core.userdetails.User(
-                    "", "", true, true, true,
-                    true, List.of(new SimpleGrantedAuthority("ROLE_USER"))
-            );
-        } else {
-            userDetails = new org.springframework.security.core.userdetails.User(
-                    user.getUsername(),
-                    user.getPassword(),
-                    user.isEnabled(),
-                    user.isAccountExpired(),
-                    user.isCredentialsExpired(),
-                    user.isLocked(),
-                    getUserAuthorities(user.getRoles())
-            );
+            throw new UsernameNotFoundException(username);
         }
 
-        return userDetails;
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.isEnabled(),
+                user.isAccountNonExpired(),
+                user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(),
+                getUserAuthorities(user.getRoles())
+        );
     }
 
     private Collection<? extends GrantedAuthority> getUserAuthorities(Collection<Role> roles) {
