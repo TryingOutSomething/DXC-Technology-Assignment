@@ -4,34 +4,44 @@
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link href='webjars/bootstrap/css/bootstrap.min.css' rel='stylesheet'/>
+    <link rel='stylesheet' th:href='@{/css/background.css}'/>
     <script defer src='webjars/bootstrap/js/bootstrap.bundle.min.js'></script>
 </head>
 <body>
-<div id="secretPageContainer" sec:authorize="hasRole('ROLE_MANAGER')">
-    <a th:href="@{/admin}">Access Manager Page</a>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body px-4 pb-4 pt-3 px-sm-5 pt-sm-4 pb-sm-5">
+                    <div class="d-flex justify-content-between" sec:authorize="hasRole('ROLE_MANAGER')">
+                        <a th:href="@{/admin}">Admin Page</a>
+                        <a>Language</a>
+                    </div>
 
-<div id="usernameContainer">
-    <label for="username">Username:</label>
-    <span id="username" th:text="${username}"/>
-</div>
+                    <div class="d-flex justify-content-end" sec:authorize="!hasRole('ROLE_MANAGER')">
+                        <a>Language</a>
+                    </div>
 
-<div id="nameContainer">
-    <label for="name">Name:</label>
-    <span id="name" th:text="${name}"/>
-</div>
+                    <h5 class="card-title text-center mt-4 mb-3 fw-light fs-4">Username:</h5>
+                    <h5 class="card-title text-center fs-5" th:text="${username}"></h5>
+                    <h5 class="card-title text-center mt-5 mb-3 fw-light fs-4">Name:</h5>
+                    <h5 class="card-title text-center fs-5" th:text="${name}"></h5>
+                    <h5 class="card-title text-center mt-5 mb-3 fw-light fs-4">Roles:</h5>
+                    <div th:each="role : ${roles}">
+                        <h5 class="card-title text-center fs-5" th:text="${role}"></h5>
+                    </div>
 
-<div id="authorityContainer">
-    <label for="authorities">Roles: </label>
-    <div id="authorities" th:each="role : ${roles}">
-        <div th:text="${role}"/>
+                    <div class="d-flex justify-content-center mt-5" sec:authorize="isAuthenticated()">
+                        <form method="post" th:action="@{/logout}">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                                Sign out
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div id="logoutContainer" sec:authorize="isAuthenticated()">
-    <form method="post" th:action="@{/logout}">
-        <input id="logout" type="submit" value="Logout"/>
-    </form>
 </div>
 </body>
 </html>
