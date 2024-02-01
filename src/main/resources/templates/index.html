@@ -13,18 +13,18 @@
 
 <div id="usernameContainer">
     <label for="username">Username:</label>
-    <span id="username" th:text="${#authentication.principal.username}"/>
+    <span id="username" th:text="${username}"/>
 </div>
 
 <div id="nameContainer">
     <label for="name">Name:</label>
-    <span id="name" th:text="${#authentication.principal.name}"/>
+    <span id="name" th:text="${name}"/>
 </div>
 
 <div id="authorityContainer">
     <label for="authorities">Roles: </label>
-    <div id="authorities" th:each="authority : ${#authentication.principal.authorities}">
-        <div th:text="${authority}"/>
+    <div id="authorities" th:each="role : ${roles}">
+        <div th:text="${role}"/>
     </div>
 </div>
 

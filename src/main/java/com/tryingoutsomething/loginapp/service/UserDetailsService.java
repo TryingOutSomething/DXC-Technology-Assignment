@@ -4,6 +4,7 @@ import com.tryingoutsomething.loginapp.model.AuthenticatedUser;
 import com.tryingoutsomething.loginapp.model.Role;
 import com.tryingoutsomething.loginapp.model.User;
 import com.tryingoutsomething.loginapp.repositories.UserRepository;
+import com.tryingoutsomething.loginapp.utils.Constants;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -46,7 +47,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+            authorities.add(new SimpleGrantedAuthority(Constants.ROLE_PREFIX + role.getName()));
         }
 
         return authorities;
