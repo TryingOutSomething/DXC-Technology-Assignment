@@ -2,15 +2,40 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Page</title>
+    <title>Manager Page</title>
+    <link href='webjars/bootstrap/css/bootstrap.min.css' rel='stylesheet'/>
+    <link rel='stylesheet' th:href='@{/css/background.css}'/>
+    <script defer src='webjars/bootstrap/js/bootstrap.bundle.min.js'></script>
 </head>
 <body>
-<h1>Admin</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body px-4 pb-4 pt-3 px-sm-5 pt-sm-4 pb-sm-5">
+                    <div class="d-flex justify-content-end">
+                        <a>Language</a>
+                    </div>
 
-<div id="logoutContainer" sec:authorize="isAuthenticated()">
-    <form method="post" th:action="@{/logout}">
-        <input id="logout" type="submit" value="Logout"/>
-    </form>
+                    <h5 class="card-title text-center mt-4 mb-3 fw-light fs-4">A secret page for Managers</h5>
+                    <img alt="Person holding a finger to their lips in a 'shhh' gesture, signaling quiet or silence" class="img-thumbnail"
+                         src="https://images.pexels.com/photos/6284256/pexels-photo-6284256.jpeg"/>
+                    <div class="d-flex justify-content-evenly mt-5">
+                        <form method="post" th:action="@{/logout}">
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold px-3" sec:authorize="isAuthenticated()"
+                                    type="submit">
+                                Sign out
+                            </button>
+                        </form>
+                        <button class="btn btn-primary btn-login text-uppercase fw-bold px-4"
+                                onclick="window.history.back()">
+                            Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
