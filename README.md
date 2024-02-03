@@ -6,10 +6,10 @@ creating a login application. The assignment requirements are as follows:
 ### Assignment Requirements:
 
 - Create a login application with the following features:
-  - Upon successful login, display a welcome page showing the user's name, username, and role (manager/user).
-  - If the user has a manager role, the welcome page should include a link to access a restricted webpage.
-  - The restricted webpage can only be accessed by users with a manager role and not by other user roles.
-  - Implement logout functionality.
+    - Upon successful login, display a welcome page showing the user's name, username, and role (manager/user).
+    - If the user has a manager role, the welcome page should include a link to access a restricted webpage.
+    - The restricted webpage can only be accessed by users with a manager role and not by other user roles.
+    - Implement logout functionality.
 
 ### Notes:
 
@@ -132,78 +132,90 @@ will try to insert the same values into the database again.
 You have three options to start the server:
 
 <details>
-  <summary>Option 1: Command Line</summary>
-  
-  **Command Line (Bash)**
-    Navigate to the project root and run the following Gradle command:
-  
+  <summary><b>Option 1: Command Line</b></summary>
+
+- **Option 1a: Command Line (Bash)**
+  Navigate to the project root and run the following Gradle command:
+
     ```bash
     ./gradlew bootRun
     ```
-  
-  **Command Line (Windows)**
-    Navigate to the project root and run the following Gradle command:
-</details>
+
+- **Option 1b: Command Line (Windows)**
+  Navigate to the project root and run the following Gradle command:
 
   ```cmd
   gradlew.bat bootRun
   ```
 
-- **Option 3: IntelliJ IDEA**
-  If you prefer to run the server from IntelliJ, follow these steps:
+</details>
 
-  1. **Open IntelliJ IDEA**
-   - Launch IntelliJ IDEA and open your project.
+<details>
 
-  2. **Ensure Gradle Plugin is Installed**
-   - Make sure the Gradle plugin is installed in IntelliJ. You can check this in `File` -> `Settings` (or `IntelliJ IDEA` -> `Preferences` on macOS) -> `Plugins`. Look for "Gradle" in the list of installed plugins.
+<summary><b>Option 2: IntelliJ IDEA</b></summary>
 
-  3. **Create a Run Configuration**
-   - To create a custom run configuration:
-     - Navigate to `Run` -> `Edit Configurations`.
-     - Click on the `+` icon in the top-left corner and choose `Gradle`.
-     - Set the `Name` to a meaningful value.
-     - In the `Gradle project` field, select your project.
-     - In the `Tasks` field, enter `bootRun`.
-     - Click `OK` to save the configuration.
+If you prefer to run the server from IntelliJ, follow these steps:
 
-  4. **Run the Application**
-   - You can now run the application using the created Gradle run configuration:
-     - Click on the green `Run` icon in the top-right corner.
-     - Select the Gradle run configuration you just created.
-     - Click `Run`.
+1. **Open IntelliJ IDEA**
+    - Launch IntelliJ IDEA and open your project.
 
-- **Option 4: Eclipse**
-  If you prefer to run the server from Eclipse, follow these steps:
+2. **Ensure Gradle Plugin is Installed**
+    - Make sure the Gradle plugin is installed in IntelliJ. You can check this in `File` -> `Settings` (
+      or `IntelliJ IDEA` -> `Preferences` on macOS) -> `Plugins`. Look for "Gradle" in the list of installed plugins.
 
-  1. **Open Eclipse**
-   - Launch Eclipse and open your project.
+3. **Create a Run Configuration**
+    - To create a custom run configuration:
+        - Navigate to `Run` -> `Edit Configurations`.
+        - Click on the `+` icon in the top-left corner and choose `Gradle`.
+        - Set the `Name` to a meaningful value.
+        - In the `Gradle project` field, select your project.
+        - In the `Tasks` field, enter `bootRun`.
+        - Click `OK` to save the configuration.
+        -
+4. **Run the Application**
+    - You can now run the application using the created Gradle run configuration:
+        - Click on the green `Run` icon in the top-right corner.
+        - Select the Gradle run configuration you just created.
+        - Click `Run`.
 
-  2. **Ensure Buildship (Gradle Integration) is Installed**
-   - Make sure the Buildship plugin (Gradle Integration for Eclipse) is installed in Eclipse. You can check this by going to `Help` -> `Eclipse Marketplace` and searching for "Buildship". Install it if not already installed.
+</details>
 
-  3. **Import Gradle Project**
-   - Right-click in the `Project Explorer` or `Navigator` view and choose `Import`.
-   - Select `Gradle` -> `Existing Gradle Project`.
-   - Browse to the root directory of your Gradle project and click `Finish`.
+<details>
+<summary><b>Option 3: Eclipse with Gradle</b></summary>
 
-  4. **Run `bootRun` Task**
-   - In the `Gradle Tasks` view, open `your-project` -> `Tasks` -> `application` -> `bootRun`.
-   - Double-click on `bootRun` to run the application.
+If you prefer to run the server from Eclipse using Gradle, follow these steps:
 
-  5. **Create a Run Configuration (Optional)**
-   - To create a custom run configuration:
-     - Right-click on your project and choose `Run As` -> `Run Configurations`.
-     - In the left panel, right-click on `Gradle Project` and choose `New Configuration`.
-     - Set the `Name` to a meaningful value.
-     - In the `Gradle Tasks` tab, enter `bootRun` in the `Gradle Tasks` field.
-     - Click `Apply` and `Run`.
+1. **Open Eclipse**
+    - Launch Eclipse and open your project.
 
-  6. **Run the Application**
-   - You can now run the application using the created Gradle run configuration:
-     - Click on the green `Run` icon in the top toolbar.
-     - Select the Gradle run configuration you just created.
-     - Click `Run`.
+2. **Ensure Buildship (Gradle Integration) is Installed**
+    - Make sure the Buildship plugin (Gradle Integration for Eclipse) is installed in Eclipse. You can check this by
+      going to `Help` -> `Eclipse Marketplace` and searching for "Buildship". Install it if not already installed.
+
+3. **Import Gradle Project**
+    - Right-click in the `Project Explorer` or `Navigator` view and choose `Import`.
+    - Select `Gradle` -> `Existing Gradle Project`.
+    - Browse to the root directory of your Gradle project and click `Finish`.
+
+4. **Run `bootRun` Task**
+    - In the `Gradle Tasks` view, open `your-project` -> `Tasks` -> `application` -> `bootRun`.
+    - Double-click on `bootRun` to run the application.
+
+5. **Create a Run Configuration (Optional)**
+    - To create a custom run configuration:
+        - Right-click on your project and choose `Run As` -> `Run Configurations`.
+        - In the left panel, right-click on `Gradle Project` and choose `New Configuration`.
+        - Set the `Name` to a meaningful value.
+        - In the `Gradle Tasks` tab, enter `bootRun` in the `Gradle Tasks` field.
+        - Click `Apply` and `Run`.
+
+6. **Run the Application**
+    - You can now run the application using the created Gradle run configuration:
+        - Click on the green `Run` icon in the top toolbar.
+        - Select the Gradle run configuration you just created.
+        - Click `Run`.
+
+</details>
 
 The application will start, and you can access it at [http://localhost:8080](http://localhost:8080).
 
