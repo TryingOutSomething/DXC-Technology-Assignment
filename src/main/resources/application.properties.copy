@@ -4,13 +4,13 @@ server.port=8080
 # DB
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=create
-spring.datasource.url=jdbc:postgresql://localhost:5432/<DATABASE NAME>
+spring.datasource.url=jdbc:postgresql://localhost:5432/loginapp
 spring.datasource.username=postgres
-spring.datasource.password=
+spring.datasource.password=password
 
 #init db data
-#spring.sql.init.mode=always
-#spring.sql.init.data-locations=classpath:db/data.sql
-#spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
+spring.sql.init.data-locations=classpath:db/data.sql
+spring.jpa.defer-datasource-initialization=true
 
 server.error.whitelabel.enabled=false
