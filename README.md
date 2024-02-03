@@ -129,41 +129,81 @@ will try to insert the same values into the database again.
 
 ### 6. Start the Server
 
-You have two options to start the server:
+You have three options to start the server:
 
-```bash
-# bash
-./gradlew bootRun
+<details>
+  <summary>Option 1: Command Line</summary>
+  
+  **Command Line (Bash)**
+    Navigate to the project root and run the following Gradle command:
+  
+    ```bash
+    ./gradlew bootRun
+    ```
+  
+  **Command Line (Windows)**
+    Navigate to the project root and run the following Gradle command:
+</details>
 
-# windows
-gradlew.bat bootRun
-```
-
-The application will start, and you can access it at [http://localhost:8080](http://localhost:8080).
-
-### 6. Start the Server
-
-You have two options to start the server:
-
-- **Option 1: Command Line**
-  Navigate to the project root and run the following Gradle command:
-
-  ```bash
-  ./gradlew bootRun
+  ```cmd
+  gradlew.bat bootRun
   ```
 
-- **Option 2: IntelliJ IDEA**
+- **Option 3: IntelliJ IDEA**
   If you prefer to run the server from IntelliJ, follow these steps:
 
-    - Open IntelliJ IDEA and import the project.
-    - Navigate to `Run` -> `Edit Configurations`.
-    - Click on the `+` icon and choose `Spring Boot`.
-    - Set the `Name` to a meaningful value.
-    - Set the `Main class` to `com.yourpackage.YourApplicationClass` (replace with your actual package and application
-      class).
-    - Apply the changes.
+  1. **Open IntelliJ IDEA**
+   - Launch IntelliJ IDEA and open your project.
 
-  Now you can run the application from IntelliJ using the configured Spring Boot configuration.
+  2. **Ensure Gradle Plugin is Installed**
+   - Make sure the Gradle plugin is installed in IntelliJ. You can check this in `File` -> `Settings` (or `IntelliJ IDEA` -> `Preferences` on macOS) -> `Plugins`. Look for "Gradle" in the list of installed plugins.
+
+  3. **Create a Run Configuration**
+   - To create a custom run configuration:
+     - Navigate to `Run` -> `Edit Configurations`.
+     - Click on the `+` icon in the top-left corner and choose `Gradle`.
+     - Set the `Name` to a meaningful value.
+     - In the `Gradle project` field, select your project.
+     - In the `Tasks` field, enter `bootRun`.
+     - Click `OK` to save the configuration.
+
+  4. **Run the Application**
+   - You can now run the application using the created Gradle run configuration:
+     - Click on the green `Run` icon in the top-right corner.
+     - Select the Gradle run configuration you just created.
+     - Click `Run`.
+
+- **Option 4: Eclipse**
+  If you prefer to run the server from Eclipse, follow these steps:
+
+  1. **Open Eclipse**
+   - Launch Eclipse and open your project.
+
+  2. **Ensure Buildship (Gradle Integration) is Installed**
+   - Make sure the Buildship plugin (Gradle Integration for Eclipse) is installed in Eclipse. You can check this by going to `Help` -> `Eclipse Marketplace` and searching for "Buildship". Install it if not already installed.
+
+  3. **Import Gradle Project**
+   - Right-click in the `Project Explorer` or `Navigator` view and choose `Import`.
+   - Select `Gradle` -> `Existing Gradle Project`.
+   - Browse to the root directory of your Gradle project and click `Finish`.
+
+  4. **Run `bootRun` Task**
+   - In the `Gradle Tasks` view, open `your-project` -> `Tasks` -> `application` -> `bootRun`.
+   - Double-click on `bootRun` to run the application.
+
+  5. **Create a Run Configuration (Optional)**
+   - To create a custom run configuration:
+     - Right-click on your project and choose `Run As` -> `Run Configurations`.
+     - In the left panel, right-click on `Gradle Project` and choose `New Configuration`.
+     - Set the `Name` to a meaningful value.
+     - In the `Gradle Tasks` tab, enter `bootRun` in the `Gradle Tasks` field.
+     - Click `Apply` and `Run`.
+
+  6. **Run the Application**
+   - You can now run the application using the created Gradle run configuration:
+     - Click on the green `Run` icon in the top toolbar.
+     - Select the Gradle run configuration you just created.
+     - Click `Run`.
 
 The application will start, and you can access it at [http://localhost:8080](http://localhost:8080).
 
