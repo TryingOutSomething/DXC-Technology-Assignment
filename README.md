@@ -41,7 +41,7 @@ Follow these steps to set up and run the project on your local machine:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/TryingOutSomething/DXC-Technology-Assignment.git
 ```
 
 ### 2. Install Java 17
