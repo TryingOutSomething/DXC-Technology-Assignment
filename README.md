@@ -1,4 +1,26 @@
-# Project Name
+# DXC-Technology-Assignment
+
+This repository contains the source code for the take-home assignment for DXC-Technology, where I am tasked with
+creating a login application. The assignment requirements are as follows:
+
+### Assignment Requirements:
+
+- Create a login application with the following features:
+  - Upon successful login, display a welcome page showing the user's name, username, and role (manager/user).
+  - If the user has a manager role, the welcome page should include a link to access a restricted webpage.
+  - The restricted webpage can only be accessed by users with a manager role and not by other user roles.
+  - Implement logout functionality.
+
+### Notes:
+
+- If the userid or password is not valid, the user should remain at the login page with an error message stating "
+  Invalid userid or password".
+- All data should be stored in a database.
+- The application should demonstrate the Model-View-Controller (MVC) pattern.
+
+### Bonus Question:
+
+- Implement the ability for the application to support at least 2 languages (e.g., English, Mandarin).
 
 ## Overview
 
