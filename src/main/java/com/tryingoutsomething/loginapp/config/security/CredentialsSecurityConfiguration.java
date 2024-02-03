@@ -52,6 +52,7 @@ public class CredentialsSecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/admin").hasRole("MANAGER")
                         .requestMatchers("/").hasAnyRole("MANAGER", "USER")
+                        .requestMatchers("/login/**").permitAll()
                         .requestMatchers("/webjars/**", "/js/**", "/css/**", "/img/**").permitAll()
                         .anyRequest().authenticated()
                 )
