@@ -47,7 +47,7 @@ git clone https://github.com/your-username/your-project.git
 ### 2. Install Java 17
 
 Ensure that you have Java 17 installed on your machine. You can download it
-from [here](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html). Also, set the JAVA_HOME environment
+from [here](https://www.oracle.com/java/technologies/downloads/#java17). Also, set the JAVA_HOME environment
 variable.
 
 ### 3. Install PostgreSQL
