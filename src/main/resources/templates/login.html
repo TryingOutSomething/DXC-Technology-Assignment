@@ -7,6 +7,7 @@
     <link rel='stylesheet' th:href='@{/css/background.css}'/>
     <script defer src='webjars/bootstrap/js/bootstrap.bundle.min.js'></script>
     <script defer th:src='@{/js/loginValidation.js}'></script>
+    <script defer th:src='@{/js/localisation.js}'></script>
 </head>
 <body>
 <div class="container">
@@ -14,7 +15,15 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body p-4 p-sm-5">
-                    <h5 class="card-title text-center mb-5 fw-light fs-5" th:text="#{login.signin.title}"></h5>
+                    <div class="row mb-5">
+                        <div class="col"></div>
+                        <h5 class="card-title text-center fw-light fs-5 col-7 col-sm-5 col-md-7"
+                            th:text="#{login.signin.title}"></h5>
+                        <select class="col form-select" id="languageSelection">
+                            <option th:text="#{language.en}" th:value="#{language.option.value.en}"></option>
+                            <option th:text="#{language.zh}" th:value="#{language.option.value.zh}"></option>
+                        </select>
+                    </div>
 
                     <form class="needs-validation" method="post" novalidate th:action="@{/login}">
                         <div class="form-floating mb-3">

@@ -6,6 +6,7 @@
     <link href='webjars/bootstrap/css/bootstrap.min.css' rel='stylesheet'/>
     <link rel='stylesheet' th:href='@{/css/background.css}'/>
     <script defer src='webjars/bootstrap/js/bootstrap.bundle.min.js'></script>
+    <script defer th:src='@{/js/localisation.js}'></script>
 </head>
 <body>
 <div class="container">
@@ -14,22 +15,25 @@
             <div class="card border-0 shadow rounded-3 my-5">
                 <div class="card-body px-4 pb-4 pt-3 px-sm-5 pt-sm-4 pb-sm-5">
                     <div class="d-flex justify-content-end">
-                        <a>Language</a>
+                        <select class="form-select" id="languageSelection">
+                            <option th:text="#{language.en}" th:value="#{language.option.value.en}"></option>
+                            <option th:text="#{language.zh}" th:value="#{language.option.value.zh}"></option>
+                        </select>
                     </div>
 
-                    <h5 class="card-title text-center mt-4 mb-3 fw-light fs-4">A secret page for Managers</h5>
-                    <img alt="Person holding a finger to their lips in a 'shhh' gesture, signaling quiet or silence" class="img-thumbnail"
+                    <h5 class="card-title text-center mt-4 mb-3 fw-light fs-4" th:text="#{admin.message}"></h5>
+                    <img class="img-thumbnail"
+                         th:alt="#{admin.image.alt.message}"
                          src="https://images.pexels.com/photos/6284256/pexels-photo-6284256.jpeg"/>
                     <div class="d-flex justify-content-evenly mt-5">
                         <form method="post" th:action="@{/logout}">
-                            <button class="btn btn-primary btn-login text-uppercase fw-bold px-3" sec:authorize="isAuthenticated()"
-                                    type="submit">
-                                Sign out
+                            <button class="btn btn-primary btn-login text-uppercase fw-bold px-3"
+                                    sec:authorize="isAuthenticated()"
+                                    th:text="#{signout.button.message}" type="submit">
                             </button>
                         </form>
                         <button class="btn btn-primary btn-login text-uppercase fw-bold px-4"
-                                onclick="window.history.back()">
-                            Back
+                                onclick="window.history.back()" th:text="#{admin.back.button.message}">
                         </button>
                     </div>
                 </div>
