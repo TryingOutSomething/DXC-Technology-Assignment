@@ -242,3 +242,5 @@ Additionally, the server supports two types of roles:
 
 The application can toggle between English and Mandarin languages. You can toggle between English and Mandarin languages
 using the language selector.
+
+For a more detailed explanation of the file structure, [click here](Project-Structure.md).
